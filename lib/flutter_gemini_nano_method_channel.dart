@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+
 import 'flutter_gemini_nano_platform_interface.dart';
 
 class MethodChannelFlutterGeminiNano extends FlutterGeminiNanoPlatform {
-  @visibleForTesting
-  final MethodChannel methodChannel = const MethodChannel('android_channel');
+  static const MethodChannel _channel = MethodChannel('flutter_gemini_nano');
 
   @override
   Future<Map<String, dynamic>> geminiNano({
@@ -16,16 +15,27 @@ class MethodChannelFlutterGeminiNano extends FlutterGeminiNanoPlatform {
     int? candidateCount,
     int? maxOutputTokens,
   }) async {
-    final result = await methodChannel.invokeMethod<Map>('gemini_nano', {
-      'prompt': prompt,
-      'image_bytes': imageBytes,
-      'temperature': temperature,
-      'seed': seed,
-      'topK': topK,
-      'candidateCount': candidateCount,
-      'maxOutputTokensDefault': maxOutputTokens,
-    });
+    final Map<dynamic, dynamic>? result =
+        await _channel.invokeMethod<Map<dynamic, dynamic>>(
+      'geminiNano',
+      {
+        'prompt': prompt,
+        'imageBytes': imageBytes,
+        'temperature': temperature,
+        'seed': seed,
+        'topK': topK,
+        'candidateCount': candidateCount,
+        'maxOutputTokens': maxOutputTokens,
+      },
+    );
 
-    return Map<String, dynamic>.from(result ?? {});
+    if (result == null) {
+      throw PlatformException(
+        code: 'NULL_RESULT',
+        message: 'Resposta nula do método geminiNano',
+      );
+    }
+
+    return Map<String, dynamic>.from(result);
   }
 }

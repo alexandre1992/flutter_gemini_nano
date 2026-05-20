@@ -25,12 +25,18 @@ class GeminiNanoExample extends StatefulWidget {
 }
 
 class _GeminiNanoExampleState extends State<GeminiNanoExample> {
-  final _plugin = FlutterGeminiNano.instance;
+  final _plugin = FlutterGeminiNano();
   final _controller = TextEditingController();
 
   bool _loading = false;
   String? _result;
   String? _error;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   Future<void> _runGemini() async {
     setState(() {
@@ -48,6 +54,10 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
 
       setState(() {
         _result = response.result ?? 'Sem resposta';
+      });
+    } on UnsupportedError catch (e) {
+      setState(() {
+        _error = e.message;
       });
     } catch (e) {
       setState(() {
@@ -83,7 +93,11 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
               child: ElevatedButton(
                 onPressed: _loading ? null : _runGemini,
                 child: _loading
-                    ? const CircularProgressIndicator()
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
                     : const Text('Executar Gemini Nano'),
               ),
             ),

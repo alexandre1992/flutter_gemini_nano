@@ -14,35 +14,36 @@ sem necessidade de chamadas para servidores externos.
 
 - ✅ Geração de texto usando Gemini Nano
 - ✅ Suporte a prompt multimodal (texto + imagem)
-- ✅ Controle de parâmetros:
-  - temperature
-  - topK
-  - seed
-  - candidateCount
-  - maxOutputTokens
+- ✅ Controle de parâmetros de geração:
+  - `temperature`
+  - `topK`
+  - `seed`
+  - `candidateCount`
+  - `maxOutputTokens`
 - ✅ Download automático do modelo quando necessário
 - ✅ Tratamento de dispositivos não compatíveis
-- ✅ API simples e segura
+- ✅ API simples, segura e tipada
 
 ---
 
-## 📱 Plataformas Suportadas
+## 📱 Plataformas suportadas
 
 | Plataforma | Suporte |
 |-----------|--------|
 | Android   | ✅ Sim (Gemini Nano) |
-| iOS       | ❌ Não (ainda não disponível) |
+| iOS       | ❌ Não |
 | Web       | ❌ Não |
 | Desktop   | ❌ Não |
 
-> ⚠️ O Gemini Nano está disponível apenas em **dispositivos Android compatíveis**.
+> ⚠️ O Gemini Nano está disponível apenas em **dispositivos Android compatíveis**  
+> e requer suporte do **Google ML Kit GenAI** no dispositivo.
 
 ---
 
 ## 📦 Instalação
 
-No `pubspec.yaml`:
+Adicione ao seu `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_gemini_nano: ^1.0.0
+  flutter_gemini_nano: ^1.0.2
