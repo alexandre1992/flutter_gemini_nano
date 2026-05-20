@@ -2,7 +2,7 @@ name: flutter_gemini_nano
 description: >
   Flutter plugin for on-device text and multimodal generation using
   Gemini Nano via ML Kit GenAI on Android.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/alexandre1992/flutter_gemini_nano
 repository: https://github.com/alexandre1992/flutter_gemini_nano
 issue_tracker: https://github.com/alexandre1992/flutter_gemini_nano/issues

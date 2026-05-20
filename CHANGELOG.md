@@ -20,3 +20,7 @@
 ### Notes
 - Currently supported only on Android devices compatible with Gemini Nano.
 - All processing is performed locally on the device.
+
+## 1.0.1
+- Improve error handling
+- Minor internal refactor
