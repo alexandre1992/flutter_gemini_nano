@@ -46,4 +46,4 @@ Adicione ao seu `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_gemini_nano: ^1.0.2
+  flutter_gemini_nano: ^1.0.3

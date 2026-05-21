@@ -1,8 +1,13 @@
 import 'package:flutter/services.dart';
-
 import 'flutter_gemini_nano_platform_interface.dart';
 
+/// Android implementation of the flutter_gemini_nano plugin.
+///
+/// Uses a [MethodChannel] to communicate with the native
+/// Android layer responsible for interacting with
+/// Android AI Core and executing Gemini Nano.
 class MethodChannelFlutterGeminiNano extends FlutterGeminiNanoPlatform {
+  /// Method channel used to communicate with native Android code.
   static const MethodChannel _channel = MethodChannel('flutter_gemini_nano');
 
   @override
@@ -32,7 +37,7 @@ class MethodChannelFlutterGeminiNano extends FlutterGeminiNanoPlatform {
     if (result == null) {
       throw PlatformException(
         code: 'NULL_RESULT',
-        message: 'Resposta nula do método geminiNano',
+        message: 'Null response returned from geminiNano method',
       );
     }
 
