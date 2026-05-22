@@ -82,3 +82,7 @@
 - Melhor tratamento de erros quando o modelo está indisponível
 - Feedback mais claro para plataformas não suportadas
 - Validação interna dos parâmetros de geração
+
+## 1.0.5
+
+- Novo README.md com um link para doações para manter o codigo atualizado
