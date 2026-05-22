@@ -80,7 +80,7 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
       );
 
       setState(() {
-        _result = response.result ?? 'Sem resposta';
+        _result = response.result ?? 'No resposta';
       });
     } on UnsupportedError catch (e) {
       setState(() {
@@ -107,7 +107,7 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
             child: CircularProgressIndicator(strokeWidth: 2),
           ),
           SizedBox(width: 8),
-          Text('Verificando Gemini Nano...'),
+          Text('Checking Gemini Nano...'),
         ],
       );
     }
@@ -121,7 +121,7 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
         ),
         const SizedBox(width: 8),
         Text(
-          _isAvailable! ? 'Gemini Nano disponível' : 'Gemini Nano indisponível',
+          _isAvailable! ? 'Gemini Nano available' : 'Gemini Nano unavailable',
         ),
       ],
     );
@@ -159,7 +159,7 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
                         width: 20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Executar Gemini Nano'),
+                    : const Text('Run Gemini Nano'),
               ),
             ),
             const SizedBox(height: 16),

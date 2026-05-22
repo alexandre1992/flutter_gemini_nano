@@ -82,15 +82,6 @@ class FlutterGeminiNanoPlugin :
         return generativeModel.checkStatus()
     }
 
-    private suspend fun isGeminiNanoUsable(): Boolean {
-        return when (getGeminiNanoStatus()) {
-            FeatureStatus.AVAILABLE,
-            FeatureStatus.DOWNLOADABLE,
-            FeatureStatus.DOWNLOADING -> true
-            else -> false
-        }
-    }
-
     private suspend fun runGeminiNano(
         call: MethodCall,
         result: MethodChannel.Result
@@ -173,7 +164,7 @@ class FlutterGeminiNanoPlugin :
     }
 
     private suspend fun isGeminiNanoUsable(): Boolean =
-        when (generativeModel.checkStatus()) {
+        when (getGeminiNanoStatus()) {
             FeatureStatus.AVAILABLE,
             FeatureStatus.DOWNLOADABLE,
             FeatureStatus.DOWNLOADING -> true
@@ -181,7 +172,7 @@ class FlutterGeminiNanoPlugin :
         }
 
     private suspend fun ensureModelReady() {
-        when (generativeModel.checkStatus()) {
+        when (getGeminiNanoStatus()) {
             FeatureStatus.AVAILABLE -> return
             FeatureStatus.DOWNLOADABLE -> {
                 generativeModel.download().collect {
@@ -191,7 +182,7 @@ class FlutterGeminiNanoPlugin :
             FeatureStatus.DOWNLOADING -> {
                 repeat(60) {
                     delay(500)
-                    if (generativeModel.checkStatus() == FeatureStatus.AVAILABLE) return
+                    if (getGeminiNanoStatus() == FeatureStatus.AVAILABLE) return
                 }
                 throw IllegalStateException("Gemini Nano ainda está baixando.")
             }

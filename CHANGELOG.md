@@ -86,3 +86,37 @@
 ## 1.0.5
 
 - Novo README.md com um link para doações para manter o codigo atualizado
+
+## 2.0.0
+
+### 🎉 Primeira versão estável (Stable Release)
+
+Esta versão marca a consolidação do `flutter_gemini_nano` como um plugin
+estável, documentado e pronto para uso em produção.
+
+### ✅ Estabilidade da API
+- API pública considerada estável
+- Método único e padronizado `generate`
+- Modelo de resposta tipado e documentado (`GeminiNanoResponse`)
+- Compatibilidade mantida com todas as versões 1.x
+
+### 🔍 Verificação de disponibilidade
+- API oficial `isAvailable()` para validação prévia do Gemini Nano
+- Previne execução em dispositivos não compatíveis
+- Comportamento previsível em plataformas não suportadas
+
+### 📚 Documentação
+- Documentação completa com `dartdoc`
+- README reestruturado com foco em uso real e limitações
+- Exemplo funcional e didático
+
+### 🛡️ Segurança e robustez
+- Validação de parâmetros de geração
+- Tratamento consistente de erros
+- Execução 100% on-device (sem rede)
+
+### 🤖 Plataformas
+- Android (Gemini Nano via ML Kit GenAI)
+- Outras plataformas retornam erro explícito e seguro
+
+> 🔔 **Nota**: Não há breaking changes em relação à linha 1.x.
