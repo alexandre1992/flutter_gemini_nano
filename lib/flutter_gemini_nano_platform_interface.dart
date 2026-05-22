@@ -63,4 +63,10 @@ abstract class FlutterGeminiNanoPlatform extends PlatformInterface {
     int? candidateCount,
     int? maxOutputTokens,
   });
+
+  /// Checks whether Gemini Nano is available on the current device.
+  ///
+  /// Returns `true` if the device supports Gemini Nano,
+  /// `false` otherwise.
+  Future<bool> isGeminiNanoAvailable();
 }

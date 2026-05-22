@@ -73,4 +73,15 @@ class FlutterGeminiNano {
       );
     }
   }
+
+  /// Checks if Gemini Nano is available on this device.
+  ///
+  /// Useful to verify compatibility before attempting inference.
+  ///
+  /// Throws:
+  /// - [UnsupportedError] if the platform is not Android.
+  Future<bool> isAvailable() async {
+    _ensureAndroid();
+    return FlutterGeminiNanoPlatform.instance.isGeminiNanoAvailable();
+  }
 }

@@ -4,6 +4,13 @@ Plugin Flutter para uso do **Gemini Nano (on-device)** via **ML Kit GenAI**, per
 geração de texto e multimodal (texto + imagem) **diretamente no dispositivo Android**,
 sem necessidade de chamadas para servidores externos.
 
+## ☕ Support the project
+
+<a href="https://buymeacoffee.com/malexandrej" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+       alt="Buy Me A Coffee"
+       width="200"/>
+
 > ✅ Processamento local  
 > ✅ Privacidade por design  
 > ✅ Ideal para apps offline ou sensíveis a dados  

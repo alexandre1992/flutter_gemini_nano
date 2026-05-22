@@ -29,8 +29,28 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
   final _controller = TextEditingController();
 
   bool _loading = false;
+  bool? _isAvailable;
   String? _result;
   String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkAvailability();
+  }
+
+  Future<void> _checkAvailability() async {
+    try {
+      final available = await _plugin.isAvailable();
+      setState(() {
+        _isAvailable = available;
+      });
+    } catch (_) {
+      setState(() {
+        _isAvailable = false;
+      });
+    }
+  }
 
   @override
   void dispose() {
@@ -39,6 +59,13 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
   }
 
   Future<void> _runGemini() async {
+    if (_isAvailable != true) {
+      setState(() {
+        _error = 'Gemini Nano no available on this device.';
+      });
+      return;
+    }
+
     setState(() {
       _loading = true;
       _result = null;
@@ -70,6 +97,36 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
     }
   }
 
+  Widget _availabilityStatus() {
+    if (_isAvailable == null) {
+      return const Row(
+        children: [
+          SizedBox(
+            height: 16,
+            width: 16,
+            child: CircularProgressIndicator(strokeWidth: 2),
+          ),
+          SizedBox(width: 8),
+          Text('Verificando Gemini Nano...'),
+        ],
+      );
+    }
+
+    return Row(
+      children: [
+        Icon(
+          _isAvailable! ? Icons.check_circle : Icons.cancel,
+          color: _isAvailable! ? Colors.green : Colors.red,
+          size: 18,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          _isAvailable! ? 'Gemini Nano disponível' : 'Gemini Nano indisponível',
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,6 +135,8 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            _availabilityStatus(),
+            const SizedBox(height: 12),
             TextField(
               controller: _controller,
               decoration: const InputDecoration(
@@ -91,7 +150,9 @@ class _GeminiNanoExampleState extends State<GeminiNanoExample> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _loading ? null : _runGemini,
+                onPressed: (_loading || _isAvailable != true)
+                    ? null
+                    : _runGemini,
                 child: _loading
                     ? const SizedBox(
                         height: 20,

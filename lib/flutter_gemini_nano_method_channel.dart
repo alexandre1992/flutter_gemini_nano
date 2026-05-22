@@ -43,4 +43,19 @@ class MethodChannelFlutterGeminiNano extends FlutterGeminiNanoPlatform {
 
     return Map<String, dynamic>.from(result);
   }
+
+  @override
+  Future<bool> isGeminiNanoAvailable() async {
+    final bool? result =
+        await _channel.invokeMethod<bool>('isGeminiNanoAvailable');
+
+    if (result == null) {
+      throw PlatformException(
+        code: 'NULL_RESULT',
+        message: 'Null response returned from isGeminiNanoAvailable',
+      );
+    }
+
+    return result;
+  }
 }

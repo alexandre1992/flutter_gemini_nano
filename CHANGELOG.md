@@ -65,3 +65,20 @@
 - Documentação do modelo de resposta `GeminiNanoResponse`
 - Padronização dos comentários para compatibilidade com `dartdoc`
 - Melhoria na clareza dos parâmetros de geração (`temperature`, `seed`, `topK`, `candidateCount`, `maxOutputTokens`)
+
+## 1.0.4
+
+### ✨ Novos recursos
+
+- Adicionada a API `isAvailable()` para verificar a disponibilidade do Gemini Nano antes da inferência
+- Método de plataforma exposto `isGeminiNanoAvailable`
+- Segurança aprimorada, prevenindo execução em dispositivos não suportados
+- App de exemplo atualizado para:
+  - Exibir o status de disponibilidade na interface
+  - Desabilitar a execução quando o Gemini Nano estiver indisponível
+
+### 🛠 Melhorias
+
+- Melhor tratamento de erros quando o modelo está indisponível
+- Feedback mais claro para plataformas não suportadas
+- Validação interna dos parâmetros de geração

@@ -69,7 +69,25 @@ class FlutterGeminiNanoPlugin :
                     runGeminiNano(call, result)
                 }
             }
+            "isGeminiNanoAvailable" -> {
+                lifecycleOwner.lifecycleScope.launch {
+                    result.success(isGeminiNanoUsable())
+                }
+            }
             else -> result.notImplemented()
+        }
+    }
+    
+    private suspend fun getGeminiNanoStatus(): Int {
+        return generativeModel.checkStatus()
+    }
+
+    private suspend fun isGeminiNanoUsable(): Boolean {
+        return when (getGeminiNanoStatus()) {
+            FeatureStatus.AVAILABLE,
+            FeatureStatus.DOWNLOADABLE,
+            FeatureStatus.DOWNLOADING -> true
+            else -> false
         }
     }
 
